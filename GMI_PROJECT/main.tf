@@ -32,11 +32,21 @@ resource "aws_subnet" "private" {
 # NAT Gateway for private subnets (one NAT in first public subnet)
 resource "aws_eip" "nat" {
   domain = "vpc"
+  tags = {
+    Name = "${var.project_name}-nat-eip"
+  }
 }
 
 resource "aws_nat_gateway" "natgw" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
+  connectivity_type = "public"
+
+  tags = {
+    Name = "${var.project_name}-nat-gateway"
+  }
+
+  depends_on = [aws_internet_gateway.igw]
 }
 
 # Route tables
