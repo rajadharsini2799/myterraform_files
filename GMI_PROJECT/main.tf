@@ -31,7 +31,7 @@ resource "aws_subnet" "private" {
 
 # NAT Gateway for private subnets (one NAT in first public subnet)
 resource "aws_eip" "nat" {
-  vpc = true
+  domain = "vpc"
 }
 
 resource "aws_nat_gateway" "natgw" {
