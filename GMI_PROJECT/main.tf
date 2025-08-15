@@ -226,7 +226,13 @@ resource "aws_eks_cluster" "eks" {
   vpc_config {
     subnet_ids = aws_subnet.private[*].id
   }
-
+   enabled_cluster_log_types = [
+    "api",
+    "audit",
+    "authenticator",
+    "controllerManager",
+    "scheduler"
+  ]
   depends_on = [aws_iam_role_policy_attachment.eks_AmazonEKSClusterPolicy]
 }
 
