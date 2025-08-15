@@ -28,11 +28,6 @@ variable "availability_zones" {
   default = []
 }
 
-variable "key_name" {
-  description = "Existing AWS key pair name to use for EC2 access"
-  type        = string
-}
-
 variable "instance_type_elk" {
   type    = string
   default = "t3.large"
